@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Lau;Siew Seng;;;
+FN:Lau Siew Seng
+ORG:Port Klang Free Zone Sdn Bhd
+TITLE:Manager, IT
+TEL;TYPE=CELL:012-5381068
+TEL;TYPE=WORK:03-3101 5568
+EMAIL;TYPE=WORK:siewseng.lau@pkfz.com
+ADR;TYPE=WORK:;;Jalan FZ 2-P5, Port Klang Free Zone/KS 12;Pulau Indah;Selangor;42920;Malaysia
+URL:https://www.pkfz.com
+PHOTO;VALUE=URI:https://raw.githubusercontent.com/Ain-5y4f4/lau-siew-seng-contact/main/profile.jpg
+END:VCARD
