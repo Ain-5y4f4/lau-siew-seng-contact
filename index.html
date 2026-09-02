@@ -19,258 +19,291 @@
             align-items: center;
             justify-content: center;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #f0f4fa;
+            background: #eef2f7;
             padding: 24px;
         }
 
-        /* ----- refined card – clean, elevated, professional ----- */
+        /* ----- landscape card – IT-inspired colour palette ----- */
         .card {
             width: 100%;
-            max-width: 520px;
+            max-width: 820px;
             margin: 0 auto;
             position: relative;
             background: #ffffff;
             border-radius: 32px;
             box-shadow:
-                0 20px 60px rgba(0, 20, 40, 0.08),
-                0 8px 24px rgba(0, 20, 40, 0.04);
-            padding: 40px 32px 32px;
+                0 20px 60px rgba(0, 40, 80, 0.08),
+                0 8px 24px rgba(0, 40, 80, 0.04);
+            padding: 36px 40px 32px;
             transition: box-shadow 0.2s;
-            border: 1px solid rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 120, 255, 0.06);
+
+            /* landscape grid: left (profile) + right (contacts) */
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 32px;
+            align-items: start;
         }
 
         .card:hover {
             box-shadow:
-                0 30px 80px rgba(0, 20, 40, 0.10),
-                0 12px 32px rgba(0, 20, 40, 0.04);
+                0 30px 80px rgba(0, 40, 80, 0.10),
+                0 12px 32px rgba(0, 40, 80, 0.04);
         }
 
-        /* subtle glow – replaced with soft accent */
-        .glow {
-            display: none;
+        /* subtle tech-inspired accent line */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0066cc, #00a3e0, #0066cc);
+            border-radius: 32px 32px 0 0;
+            opacity: 0.6;
         }
 
-        /* ----- header – refined typography and spacing ----- */
+        /* ----- left column – profile & header (compact) ----- */
+        .left-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-top: 8px;
+        }
+
         .header {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            margin-bottom: 28px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            margin-bottom: 18px;
+            width: 100%;
         }
 
         .logo-text {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
             letter-spacing: 0.02em;
-            color: #0b1e33;
+            color: #0a2540;
             line-height: 1.2;
         }
 
         .logo-subtitle {
-            font-size: 10px;
+            font-size: 9px;
             letter-spacing: 0.08em;
-            color: #5b6f84;
+            color: #4a6a85;
             text-transform: uppercase;
             font-weight: 500;
             margin-top: 2px;
         }
 
-        /* ----- profile – cleaner, more refined ----- */
-        .profile-section {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
         .profile {
-            width: 130px;
-            height: 130px;
+            width: 140px;
+            height: 140px;
             object-fit: cover;
             border-radius: 50%;
             border: 3px solid #ffffff;
             box-shadow:
-                0 8px 28px rgba(0, 20, 40, 0.08),
-                0 0 0 1px rgba(0, 0, 0, 0.02);
+                0 8px 28px rgba(0, 40, 80, 0.08),
+                0 0 0 1px rgba(0, 120, 255, 0.04);
             transition: box-shadow 0.2s;
+            margin-bottom: 12px;
         }
 
         .profile:hover {
             box-shadow:
-                0 12px 36px rgba(0, 20, 40, 0.12),
-                0 0 0 1px rgba(0, 0, 0, 0.02);
+                0 12px 36px rgba(0, 40, 80, 0.12),
+                0 0 0 1px rgba(0, 120, 255, 0.08);
         }
 
         h1 {
-            margin: 20px 0 4px;
-            font-size: 28px;
+            margin: 0 0 2px;
+            font-size: 26px;
             font-weight: 600;
             letter-spacing: -0.01em;
-            color: #0b1e33;
+            color: #0a2540;
             line-height: 1.2;
         }
 
         .position {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 500;
-            color: #1a4972;
+            color: #0066cc;
             margin-top: 2px;
             letter-spacing: 0.01em;
         }
 
         .company {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 400;
-            color: #3d5369;
-            margin-top: 6px;
+            color: #3d5a73;
+            margin-top: 4px;
             letter-spacing: 0.01em;
         }
 
         .divider {
-            width: 48px;
+            width: 40px;
             height: 2px;
-            margin: 20px auto 26px;
-            background: #1a4972;
+            margin: 14px auto 0;
+            background: linear-gradient(90deg, #0066cc, #00a3e0);
             border-radius: 2px;
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
-        /* ----- contact rows – cleaner, more spacious, subtle ----- */
+        /* ----- right column – contact list (full width) ----- */
+        .right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-top: 4px;
+        }
+
         .contact-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            padding: 14px 18px;
-            border-radius: 16px;
-            background: #f8fafc;
-            border: 1px solid rgba(0, 0, 0, 0.02);
+            padding: 12px 16px;
+            border-radius: 14px;
+            background: #f5f9ff;
+            border: 1px solid rgba(0, 120, 255, 0.06);
             text-decoration: none;
-            color: #0b1e33;
+            color: #0a2540;
             transition: all 0.15s ease;
         }
 
         .contact-item:hover {
-            background: #f1f5f9;
-            border-color: rgba(26, 73, 114, 0.08);
+            background: #ecf3fe;
+            border-color: rgba(0, 120, 255, 0.12);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 4px 12px rgba(0, 80, 200, 0.04);
         }
 
         .icon {
-            width: 42px;
-            height: 42px;
-            min-width: 42px;
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 12px;
-            background: #eef3f8;
-            font-size: 18px;
-            margin-right: 16px;
-            color: #1a4972;
+            border-radius: 10px;
+            background: #e3edfc;
+            font-size: 17px;
+            margin-right: 14px;
+            color: #0066cc;
             transition: background 0.15s;
         }
 
         .contact-item:hover .icon {
-            background: #e2eaf2;
+            background: #d4e3fa;
         }
 
         .contact-text {
             text-align: left;
             overflow-wrap: anywhere;
+            flex: 1;
         }
 
         .label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             letter-spacing: 0.04em;
             text-transform: uppercase;
-            color: #6b7f94;
-            margin-bottom: 2px;
+            color: #5a7a9a;
+            margin-bottom: 1px;
         }
 
         .value {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
-            color: #0b1e33;
+            color: #0a2540;
             line-height: 1.4;
         }
 
-        /* ----- save contact – refined button ----- */
+        .contact-item:last-of-type .value {
+            font-weight: 400;
+            color: #2a4a6a;
+        }
+
+        /* ----- save contact – IT blue gradient ----- */
         .save-contact {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
-            margin-top: 22px;
-            padding: 16px 20px;
-            border-radius: 16px;
-            background: #0b1e33;
+            margin-top: 6px;
+            padding: 14px 20px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #0066cc, #0088cc);
             color: #ffffff;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
             letter-spacing: 0.01em;
             transition: all 0.2s ease;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(11, 30, 51, 0.08);
+            box-shadow: 0 4px 16px rgba(0, 102, 204, 0.15);
         }
 
         .save-contact:hover {
-            background: #142f4a;
-            box-shadow: 0 8px 24px rgba(11, 30, 51, 0.12);
+            background: linear-gradient(135deg, #0055b3, #0077b8);
+            box-shadow: 0 8px 28px rgba(0, 102, 204, 0.20);
             transform: translateY(-1px);
         }
 
         .save-contact:active {
             transform: translateY(0);
-            box-shadow: 0 4px 12px rgba(11, 30, 51, 0.06);
+            box-shadow: 0 4px 16px rgba(0, 102, 204, 0.10);
         }
 
         .save-icon {
-            font-size: 20px;
+            font-size: 18px;
             margin-right: 10px;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
-        /* ----- footer – minimal and clean ----- */
+        /* ----- footer – tech-inspired muted colours ----- */
         .footer {
             text-align: center;
-            margin-top: 28px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(0, 0, 0, 0.04);
-            color: #7a8b9e;
-            font-size: 12px;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(0, 120, 255, 0.06);
+            color: #6a8aaa;
+            font-size: 11px;
             font-weight: 400;
             letter-spacing: 0.02em;
         }
 
         .footer strong {
-            color: #0b1e33;
+            color: #0a2540;
             font-weight: 500;
         }
 
-        /* ----- responsive adjustments ----- */
-        @media (max-width: 480px) {
-            body {
-                padding: 16px;
+        /* ============================================================
+            RESPONSIVE: stack vertically on smaller screens
+        ============================================================ */
+        @media (max-width: 680px) {
+            .card {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 28px 20px 24px;
+                max-width: 480px;
             }
 
-            .card {
-                padding: 28px 20px 24px;
-                border-radius: 24px;
+            .left-col {
+                padding-top: 0;
+                border-bottom: 1px solid rgba(0, 120, 255, 0.06);
+                padding-bottom: 18px;
             }
 
             .header {
-                margin-bottom: 20px;
-                padding-bottom: 14px;
+                margin-bottom: 12px;
             }
 
             .logo-text {
@@ -278,13 +311,13 @@
             }
 
             .profile {
-                width: 110px;
-                height: 110px;
+                width: 120px;
+                height: 120px;
+                margin-bottom: 8px;
             }
 
             h1 {
                 font-size: 24px;
-                margin-top: 16px;
             }
 
             .position {
@@ -296,21 +329,24 @@
             }
 
             .divider {
-                margin: 16px auto 20px;
+                margin: 12px auto 0;
+            }
+
+            .right-col {
+                padding-top: 0;
+                gap: 6px;
             }
 
             .contact-item {
-                padding: 12px 14px;
-                border-radius: 14px;
+                padding: 10px 14px;
             }
 
             .icon {
-                width: 38px;
-                height: 38px;
-                min-width: 38px;
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
                 font-size: 16px;
-                margin-right: 14px;
-                border-radius: 10px;
+                margin-right: 12px;
             }
 
             .value {
@@ -318,26 +354,30 @@
             }
 
             .save-contact {
-                padding: 14px 18px;
+                padding: 13px 16px;
                 font-size: 15px;
-                border-radius: 14px;
             }
 
             .footer {
-                margin-top: 22px;
-                padding-top: 16px;
+                margin-top: 14px;
+                padding-top: 12px;
                 font-size: 11px;
             }
         }
 
-        @media (max-width: 380px) {
+        @media (max-width: 400px) {
+            body {
+                padding: 12px;
+            }
+
             .card {
                 padding: 20px 14px 18px;
+                border-radius: 24px;
             }
 
             .profile {
-                width: 96px;
-                height: 96px;
+                width: 100px;
+                height: 100px;
             }
 
             h1 {
@@ -349,86 +389,50 @@
             }
 
             .contact-item {
-                padding: 10px 12px;
+                padding: 8px 12px;
+                border-radius: 12px;
+            }
+
+            .icon {
+                width: 32px;
+                height: 32px;
+                min-width: 32px;
+                font-size: 14px;
+                margin-right: 10px;
+                border-radius: 8px;
             }
 
             .value {
                 font-size: 13px;
             }
+
+            .save-contact {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
         }
 
-        /* ----- theme variations (professional, understated) ----- */
-
-        /* default: Manager (navy / executive) */
-        .card[data-theme="manager"] .position {
-            color: #1a4972;
-        }
-        .card[data-theme="manager"] .divider {
-            background: #1a4972;
-        }
-        .card[data-theme="manager"] .icon {
-            background: #eef3f8;
-            color: #1a4972;
-        }
-        .card[data-theme="manager"] .save-contact {
-            background: #0b1e33;
-        }
-        .card[data-theme="manager"] .save-contact:hover {
-            background: #142f4a;
-        }
-
-        /* IT (slate / charcoal – tech professional) */
-        .card[data-theme="it"] .position {
-            color: #2d4b6a;
-        }
-        .card[data-theme="it"] .divider {
-            background: #2d4b6a;
-        }
-        .card[data-theme="it"] .icon {
-            background: #eef2f6;
-            color: #2d4b6a;
-        }
-        .card[data-theme="it"] .save-contact {
-            background: #1e2e3f;
-        }
-        .card[data-theme="it"] .save-contact:hover {
-            background: #2a3e54;
-        }
-
-        /* subtle accent for address – keep clean */
-        .contact-item:last-of-type .value {
-            font-weight: 400;
-            color: #2d4b6a;
-        }
-
-        /* additional polish: smooth font rendering */
-        .card,
-        .contact-item,
-        .save-contact {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+        /* ----- remove old theme variations – now fixed IT palette ----- */
+        /* all colours are IT‑inspired by default */
     </style>
 </head>
 <body>
 
-<div class="card" data-theme="manager">
-    <!-- data-theme="manager" or "it" – both look professional -->
+<div class="card">
+    <!-- IT‑inspired colour palette applied globally -->
 
-    <!-- decorative glow removed for cleaner look -->
+    <!-- LEFT COLUMN: profile + header -->
+    <div class="left-col">
 
-    <!-- PKFZ Header -->
-    <div class="header">
-        <div>
+        <!-- PKFZ Header (compact) -->
+        <div class="header">
             <div class="logo-text">PKFZ</div>
             <div class="logo-subtitle">
                 Port Klang Free Zone · Malaysia
             </div>
         </div>
-    </div>
 
-    <!-- Profile -->
-    <div class="profile-section">
+        <!-- Profile -->
         <img
             src="profile.jpg"
             alt="Lau Siew Seng"
@@ -448,75 +452,81 @@
         <div class="divider"></div>
     </div>
 
-    <!-- Contact Information -->
-    <div class="contact-list">
+    <!-- RIGHT COLUMN: contacts + save + footer -->
+    <div class="right-col">
 
-        <!-- Mobile -->
-        <a class="contact-item" href="tel:0125381068">
-            <div class="icon">📱</div>
-            <div class="contact-text">
-                <div class="label">Mobile</div>
-                <div class="value">012-538 1068</div>
-            </div>
-        </a>
+        <div class="contact-list">
 
-        <!-- Office -->
-        <a class="contact-item" href="tel:0331015568">
-            <div class="icon">☎</div>
-            <div class="contact-text">
-                <div class="label">Office</div>
-                <div class="value">03-3101 5568</div>
-            </div>
-        </a>
-
-        <!-- Email -->
-        <a class="contact-item" href="mailto:siewseng.lau@pkfz.com">
-            <div class="icon">✉</div>
-            <div class="contact-text">
-                <div class="label">Email</div>
-                <div class="value">siewseng.lau@pkfz.com</div>
-            </div>
-        </a>
-
-        <!-- Website -->
-        <a class="contact-item" href="https://www.pkfz.com" target="_blank">
-            <div class="icon">🌐</div>
-            <div class="contact-text">
-                <div class="label">Website</div>
-                <div class="value">pkfz.com</div>
-            </div>
-        </a>
-
-        <!-- Address -->
-        <a
-            class="contact-item"
-            href="https://www.google.com/maps/search/?api=1&query=Port+Klang+Free+Zone+Pulau+Indah+Selangor"
-            target="_blank"
-        >
-            <div class="icon">📍</div>
-            <div class="contact-text">
-                <div class="label">Office Address</div>
-                <div class="value">
-                    Jalan FZ 2-P5, Port Klang Free Zone/KS 12,<br />
-                    42920 Pulau Indah, Selangor, Malaysia
+            <!-- Mobile -->
+            <a class="contact-item" href="tel:0125381068">
+                <div class="icon">📱</div>
+                <div class="contact-text">
+                    <div class="label">Mobile</div>
+                    <div class="value">012-538 1068</div>
                 </div>
-            </div>
+            </a>
+
+            <!-- Office -->
+            <a class="contact-item" href="tel:0331015568">
+                <div class="icon">☎</div>
+                <div class="contact-text">
+                    <div class="label">Office</div>
+                    <div class="value">03-3101 5568</div>
+                </div>
+            </a>
+
+            <!-- Email -->
+            <a class="contact-item" href="mailto:siewseng.lau@pkfz.com">
+                <div class="icon">✉</div>
+                <div class="contact-text">
+                    <div class="label">Email</div>
+                    <div class="value">siewseng.lau@pkfz.com</div>
+                </div>
+            </a>
+
+            <!-- Website -->
+            <a class="contact-item" href="https://www.pkfz.com" target="_blank">
+                <div class="icon">🌐</div>
+                <div class="contact-text">
+                    <div class="label">Website</div>
+                    <div class="value">pkfz.com</div>
+                </div>
+            </a>
+
+            <!-- Address -->
+            <a
+                class="contact-item"
+                href="https://www.google.com/maps/search/?api=1&query=Port+Klang+Free+Zone+Pulau+Indah+Selangor"
+                target="_blank"
+            >
+                <div class="icon">📍</div>
+                <div class="contact-text">
+                    <div class="label">Office Address</div>
+                    <div class="value">
+                        Jalan FZ 2-P5, Port Klang Free Zone/KS 12,<br />
+                        42920 Pulau Indah, Selangor, Malaysia
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Save Contact -->
+        <a class="save-contact" href="contact.vcf">
+            <span class="save-icon">+</span>
+            Save Contact
         </a>
 
-    </div>
+        <!-- Footer -->
+        <div class="footer">
+            <strong>Port Klang Free Zone</strong> &nbsp;·&nbsp; Digital Business Card
+        </div>
 
-    <!-- Save Contact -->
-    <a class="save-contact" href="contact.vcf">
-        <span class="save-icon">+</span>
-        Save Contact
-    </a>
-
-    <!-- Footer -->
-    <div class="footer">
-        <strong>Port Klang Free Zone</strong> &nbsp;·&nbsp; Digital Business Card
     </div>
+    <!-- end right-col -->
 
 </div>
+<!-- end card -->
 
 </body>
 </html>
