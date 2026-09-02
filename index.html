@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lau Siew Seng - Digital Business Card</title>
+    <title>Lau Siew Seng | PKFZ Digital Business Card</title>
 
     <style>
         * {
@@ -13,80 +13,287 @@
 
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f2f4f7;
-            color: #1f2937;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top right, #123d72 0%, transparent 35%),
+                linear-gradient(145deg, #020d21, #061b3d 55%, #031127);
+            color: white;
+            padding: 25px 15px;
         }
 
         .card {
-            max-width: 420px;
-            margin: 40px auto;
-            background: white;
-            border-radius: 20px;
-            padding: 30px 25px;
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+
+            background:
+                linear-gradient(
+                    160deg,
+                    rgba(10, 42, 82, 0.96),
+                    rgba(2, 17, 39, 0.98)
+                );
+
+            border: 1px solid rgba(67, 157, 255, 0.35);
+            border-radius: 28px;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.55);
+
+            padding: 30px 22px;
+        }
+
+        /* Decorative blue glow */
+        .glow {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            right: -100px;
+            top: -100px;
+
+            background: #0878ff;
+            opacity: 0.12;
+            filter: blur(60px);
+            border-radius: 50%;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            max-width: 190px;
+            max-height: 70px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 34px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            opacity: 0.8;
             text-align: center;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            margin-top: 3px;
+        }
+
+        /* Profile */
+        .profile-section {
+            text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
         .profile {
-            width: 140px;
-            height: 140px;
+            width: 145px;
+            height: 145px;
+
             object-fit: cover;
+
             border-radius: 50%;
-            border: 5px solid #ffffff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+
+            border: 5px solid #0878ff;
+
+            box-shadow:
+                0 0 0 4px rgba(255,255,255,0.08),
+                0 12px 35px rgba(0,0,0,0.5);
         }
 
         h1 {
             margin: 18px 0 5px;
-            font-size: 28px;
+
+            font-size: 31px;
+            line-height: 1.15;
+
+            letter-spacing: -0.5px;
         }
 
         .position {
-            font-size: 18px;
+            color: #1688ff;
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 5px;
+
+            margin-top: 5px;
         }
 
         .company {
-            color: #555;
-            margin-bottom: 25px;
-        }
-
-        .info {
-            text-align: left;
-            margin-top: 20px;
-        }
-
-        .info a,
-        .info div {
-            display: block;
-            padding: 12px 5px;
-            border-bottom: 1px solid #eee;
-            text-decoration: none;
-            color: #333;
-        }
-
-        .save-button {
-            display: block;
-            margin-top: 25px;
-            padding: 15px;
-            background: #111827;
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
             font-size: 17px;
-            font-weight: bold;
+            margin-top: 7px;
+            color: #e4ecf8;
         }
 
-        .save-button:hover {
-            background: #374151;
+        .divider {
+            width: 90px;
+            height: 3px;
+            margin: 18px auto 25px;
+
+            background: #0878ff;
+            border-radius: 10px;
         }
 
-        .footer {
-            margin-top: 20px;
+        /* Contact rows */
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+
+            min-height: 70px;
+            padding: 12px 14px;
+
+            border-radius: 15px;
+
+            background: rgba(14, 51, 91, 0.65);
+
+            border: 1px solid rgba(113, 177, 239, 0.2);
+
+            text-decoration: none;
+            color: white;
+
+            transition: 0.2s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+            background: rgba(21, 73, 125, 0.8);
+        }
+
+        .icon {
+            width: 45px;
+            height: 45px;
+
+            min-width: 45px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 50%;
+
+            background: #0878ff;
+
+            font-size: 21px;
+
+            margin-right: 14px;
+        }
+
+        .contact-text {
+            text-align: left;
+            overflow-wrap: anywhere;
+        }
+
+        .label {
             font-size: 12px;
-            color: #888;
+            color: #83b9ed;
+            margin-bottom: 3px;
+        }
+
+        .value {
+            font-size: 15px;
+            line-height: 1.35;
+        }
+
+        /* Save contact */
+        .save-contact {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+
+            margin-top: 22px;
+            padding: 17px 15px;
+
+            border-radius: 15px;
+
+            background: linear-gradient(
+                135deg,
+                #0878ff,
+                #0756c7
+            );
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            box-shadow:
+                0 10px 25px rgba(0, 102, 255, 0.3);
+
+            transition: 0.2s ease;
+        }
+
+        .save-contact:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 14px 30px rgba(0, 102, 255, 0.45);
+        }
+
+        .save-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+
+            margin-top: 25px;
+            padding-top: 18px;
+
+            border-top: 1px solid rgba(255,255,255,0.12);
+
+            color: #8ca4c1;
+            font-size: 12px;
+        }
+
+        .footer strong {
+            color: #dceaff;
+        }
+
+        @media (max-width: 400px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .card {
+                padding: 25px 15px;
+                border-radius: 22px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .profile {
+                width: 125px;
+                height: 125px;
+            }
+
+            .contact-item {
+                padding: 10px;
+            }
+
+            .value {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -95,52 +302,136 @@
 
 <div class="card">
 
-    <!-- Profile Photo -->
-    <img src="profile.jpg" alt="Lau Siew Seng" class="profile">
+    <div class="glow"></div>
 
-    <!-- Name -->
-    <h1>Lau Siew Seng</h1>
+    <!-- PKFZ Header -->
+    <div class="header">
+        <div>
+            <div class="logo-text">PKFZ</div>
+            <div class="logo-subtitle">
+                PORT KLANG FREE ZONE · MALAYSIA
+            </div>
+        </div>
+    </div>
 
-    <!-- Position -->
-    <div class="position">Manager, IT</div>
+    <!-- Profile -->
+    <div class="profile-section">
 
-    <!-- Company -->
-    <div class="company">
-        Port Klang Free Zone Sdn Bhd
+        <img
+            src="profile.jpg"
+            alt="Lau Siew Seng"
+            class="profile"
+        >
+
+        <h1>Lau Siew Seng</h1>
+
+        <div class="position">
+            Manager, IT
+        </div>
+
+        <div class="company">
+            Port Klang Free Zone Sdn Bhd
+        </div>
+
+        <div class="divider"></div>
+
     </div>
 
     <!-- Contact Information -->
-    <div class="info">
+    <div class="contact-list">
 
-        <a href="tel:0125381068">
-            📱 012-5381068
+        <!-- Mobile -->
+        <a
+            class="contact-item"
+            href="tel:0125381068"
+        >
+            <div class="icon">📱</div>
+
+            <div class="contact-text">
+                <div class="label">MOBILE</div>
+                <div class="value">
+                    012-5381068
+                </div>
+            </div>
         </a>
 
-        <a href="tel:0331015568">
-            ☎️ 03-3101 5568
+        <!-- Office -->
+        <a
+            class="contact-item"
+            href="tel:0331015568"
+        >
+            <div class="icon">☎</div>
+
+            <div class="contact-text">
+                <div class="label">OFFICE</div>
+                <div class="value">
+                    03-3101 5568
+                </div>
+            </div>
         </a>
 
-        <a href="mailto:siewseng.lau@pkfz.com">
-            ✉️ siewseng.lau@pkfz.com
+        <!-- Email -->
+        <a
+            class="contact-item"
+            href="mailto:siewseng.lau@pkfz.com"
+        >
+            <div class="icon">✉</div>
+
+            <div class="contact-text">
+                <div class="label">EMAIL</div>
+                <div class="value">
+                    siewseng.lau@pkfz.com
+                </div>
+            </div>
         </a>
 
-        <a href="https://www.pkfz.com" target="_blank">
-            🌐 www.pkfz.com
+        <!-- Website -->
+        <a
+            class="contact-item"
+            href="https://www.pkfz.com"
+            target="_blank"
+        >
+            <div class="icon">🌐</div>
+
+            <div class="contact-text">
+                <div class="label">WEBSITE</div>
+                <div class="value">
+                    www.pkfz.com
+                </div>
+            </div>
         </a>
 
-        <div>
-            📍 Jalan FZ 2-P5, Port Klang Free Zone/KS 12,
-            42920 Pulau Indah, Selangor Darul Ehsan, Malaysia
-        </div>
+        <!-- Address -->
+        <a
+            class="contact-item"
+            href="https://www.google.com/maps/search/?api=1&query=Port+Klang+Free+Zone+Pulau+Indah+Selangor"
+            target="_blank"
+        >
+            <div class="icon">📍</div>
+
+            <div class="contact-text">
+                <div class="label">OFFICE ADDRESS</div>
+                <div class="value">
+                    Jalan FZ 2-P5, Port Klang Free Zone/KS 12,
+                    42920 Pulau Indah, Selangor Darul Ehsan, Malaysia
+                </div>
+            </div>
+        </a>
 
     </div>
 
     <!-- Save Contact -->
-    <a class="save-button" href="contact.vcf">
-        + Save Contact
+    <a
+        class="save-contact"
+        href="contact.vcf"
+    >
+        <span class="save-icon">👤+</span>
+        Save Contact
     </a>
 
+    <!-- Footer -->
     <div class="footer">
+        <strong>PORT KLANG FREE ZONE</strong><br>
         Digital Business Card
     </div>
 
