@@ -1,662 +1,773 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lau Siew Seng | PKFZ Digital Business Card</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #080f1f;
-            padding: 24px;
-            /* subtle tech grid */
-            background-image:
-                linear-gradient(rgba(0, 180, 255, 0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 180, 255, 0.015) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        /* ----- LANDSCAPE CARD – IT DEPARTMENT THEME (dark, tech, glowing) ----- */
-        .card {
-            width: 100%;
-            max-width: 860px;
-            margin: 0 auto;
-            position: relative;
-            background: rgba(8, 18, 38, 0.94);
-            backdrop-filter: blur(2px);
-            border-radius: 32px;
-            box-shadow:
-                0 25px 70px rgba(0, 10, 40, 0.7),
-                0 0 80px rgba(0, 100, 255, 0.035),
-                inset 0 1px 0 rgba(0, 180, 255, 0.06);
-            padding: 32px 38px 28px;
-            border: 1px solid rgba(0, 180, 255, 0.07);
-            transition: box-shadow 0.3s ease;
-
-            /* LANDSCAPE: left (profile) + right (contacts) */
-            display: grid;
-            grid-template-columns: 220px 1fr;
-            gap: 30px;
-            align-items: start;
-        }
-
-        .card:hover {
-            box-shadow:
-                0 35px 90px rgba(0, 10, 40, 0.8),
-                0 0 100px rgba(0, 100, 255, 0.05),
-                inset 0 1px 0 rgba(0, 180, 255, 0.10);
-        }
-
-        /* glowing accent line – tech feel */
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #0088ff, #00ccff, #0088ff, transparent);
-            border-radius: 32px 32px 0 0;
-            opacity: 0.7;
-            filter: blur(0.5px);
-        }
-
-        /* subtle pulsing glow ring (decorative) */
-        .card::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: 20%;
-            right: 20%;
-            height: 4px;
-            background: radial-gradient(ellipse at center, rgba(0, 180, 255, 0.12), transparent 70%);
-            filter: blur(8px);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        /* ----- LEFT COLUMN – profile & header (compact) ----- */
-        .left-col {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding-top: 4px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 16px;
-            width: 100%;
-        }
-
-        .logo {
-            width: 170px;
-            max-width: 100%;
-            max-height: 70px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(0, 120, 255, 0.08));
-        }
-
-        .profile {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid rgba(0, 180, 255, 0.18);
-            box-shadow:
-                0 0 30px rgba(0, 120, 255, 0.05),
-                0 8px 28px rgba(0, 0, 0, 0.5),
-                inset 0 0 20px rgba(0, 180, 255, 0.02);
-            transition: all 0.3s ease;
-            margin-bottom: 12px;
-        }
-
-        .profile:hover {
-            box-shadow:
-                0 0 50px rgba(0, 150, 255, 0.10),
-                0 12px 36px rgba(0, 0, 0, 0.6),
-                inset 0 0 30px rgba(0, 180, 255, 0.04);
-            border-color: rgba(0, 180, 255, 0.28);
-        }
-
-        h1 {
-            margin: 0 0 2px;
-            font-size: 26px;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            color: #e8f0ff;
-            line-height: 1.2;
-            text-shadow: 0 0 30px rgba(0, 120, 255, 0.05);
-        }
-
-        .position {
-            font-size: 17px;
-            font-weight: 500;
-            color: #4db8ff;
-            margin-top: 2px;
-            letter-spacing: 0.02em;
-            text-shadow: 0 0 20px rgba(0, 150, 255, 0.1);
-        }
-
-        .company {
-            font-size: 14px;
-            font-weight: 400;
-            color: #7a9bb8;
-            margin-top: 4px;
-            letter-spacing: 0.01em;
-        }
-
-        .divider {
-            width: 40px;
-            height: 2px;
-            margin: 14px auto 0;
-            background: linear-gradient(90deg, transparent, #4db8ff, transparent);
-            border-radius: 2px;
-            opacity: 0.5;
-        }
-
-        /* ----- RIGHT COLUMN – contact list (full width) ----- */
-        .right-col {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding-top: 2px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            border-radius: 14px;
-            background: rgba(18, 38, 68, 0.45);
-            border: 1px solid rgba(0, 180, 255, 0.04);
-            text-decoration: none;
-            color: #d0e4f5;
-            transition: all 0.2s ease;
-            backdrop-filter: blur(4px);
-        }
-
-        .contact-item:hover {
-            background: rgba(28, 55, 95, 0.55);
-            border-color: rgba(0, 180, 255, 0.12);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 20px rgba(0, 80, 200, 0.04);
-        }
-
-        .icon {
-            width: 38px;
-            height: 38px;
-            min-width: 38px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            background: rgba(0, 120, 255, 0.10);
-            font-size: 17px;
-            margin-right: 14px;
-            color: #4db8ff;
-            transition: all 0.2s;
-            border: 1px solid rgba(0, 180, 255, 0.04);
-        }
-
-        .contact-item:hover .icon {
-            background: rgba(0, 120, 255, 0.16);
-            border-color: rgba(0, 180, 255, 0.08);
-        }
-
-        .contact-text {
-            text-align: left;
-            overflow-wrap: anywhere;
-            flex: 1;
-        }
-
-        .label {
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: #5a8aaa;
-            margin-bottom: 1px;
-        }
-
-        .value {
-            font-size: 14px;
-            font-weight: 400;
-            color: #d0e4f5;
-            line-height: 1.4;
-        }
-
-        .contact-item:last-of-type .value {
-            color: #b0cce0;
-        }
-
-        /* ----- SAVE CONTACT – IT tech gradient with glow ----- */
-        .save-contact {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin-top: 6px;
-            padding: 14px 20px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #0055aa, #0077cc);
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            transition: all 0.25s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 24px rgba(0, 80, 200, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .save-contact::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(0, 200, 255, 0.04), transparent 60%);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .save-contact:hover::before {
-            opacity: 1;
-        }
-
-        .save-contact:hover {
-            background: linear-gradient(135deg, #004499, #0066bb);
-            box-shadow: 0 8px 32px rgba(0, 80, 200, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-            transform: translateY(-1px);
-        }
-
-        .save-contact:active {
-            transform: translateY(0);
-            box-shadow: 0 4px 16px rgba(0, 80, 200, 0.10);
-        }
-
-        .save-icon {
-            font-size: 18px;
-            margin-right: 10px;
-            opacity: 0.9;
-        }
-
-        /* ----- SOCIAL SECTION – compact, tech style ----- */
-        .social {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            margin-top: 14px;
-        }
-
-        .social-title {
-            color: #4a6a8a;
-            font-size: 10px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .social-button {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(18, 38, 68, 0.5);
-            border: 1px solid rgba(0, 180, 255, 0.06);
-            color: #5a8aaa;
-            text-decoration: none;
-            font-size: 18px;
-            transition: all 0.2s ease;
-        }
-
-        .social-button:hover {
-            transform: translateY(-2px);
-            background: rgba(0, 120, 255, 0.12);
-            border-color: rgba(0, 180, 255, 0.15);
-            color: #4db8ff;
-        }
-
-        /* ----- FOOTER – subtle tech muted ----- */
-        .footer {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            margin-top: 16px;
-            padding-top: 14px;
-            border-top: 1px solid rgba(0, 180, 255, 0.04);
-            color: #3a5a7a;
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: 0.04em;
-            line-height: 1.6;
-        }
-
-        .footer strong {
-            color: #7a9bb8;
-            font-weight: 500;
-        }
-
-        .footer span {
-            color: #3a5a7a;
-        }
-
-        /* ============================================================
-            RESPONSIVE: stack vertically on smaller screens
-        ============================================================ */
-        @media (max-width: 680px) {
-            body {
-                padding: 16px;
-            }
-
-            .card {
-                grid-template-columns: 1fr;
-                gap: 18px;
-                padding: 26px 18px 22px;
-                max-width: 480px;
-            }
-
-            .left-col {
-                padding-top: 0;
-                border-bottom: 1px solid rgba(0, 180, 255, 0.04);
-                padding-bottom: 16px;
-            }
-
-            .header {
-                margin-bottom: 10px;
-            }
-
-            .logo {
-                width: 150px;
-                max-height: 60px;
-            }
-
-            .profile {
-                width: 120px;
-                height: 120px;
-                margin-bottom: 8px;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-
-            .position {
-                font-size: 16px;
-            }
-
-            .company {
-                font-size: 14px;
-            }
-
-            .divider {
-                margin: 12px auto 0;
-            }
-
-            .right-col {
-                padding-top: 0;
-                gap: 6px;
-            }
-
-            .contact-item {
-                padding: 10px 14px;
-            }
-
-            .icon {
-                width: 36px;
-                height: 36px;
-                min-width: 36px;
-                font-size: 16px;
-                margin-right: 12px;
-            }
-
-            .value {
-                font-size: 14px;
-            }
-
-            .save-contact {
-                padding: 13px 16px;
-                font-size: 15px;
-            }
-
-            .social {
-                margin-top: 12px;
-            }
-
-            .footer {
-                margin-top: 14px;
-                padding-top: 12px;
-                font-size: 10px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            body {
-                padding: 10px;
-            }
-
-            .card {
-                padding: 18px 12px 16px;
-                border-radius: 24px;
-            }
-
-            .profile {
-                width: 100px;
-                height: 100px;
-            }
-
-            h1 {
-                font-size: 21px;
-            }
-
-            .position {
-                font-size: 15px;
-            }
-
-            .contact-item {
-                padding: 8px 12px;
-                border-radius: 12px;
-            }
-
-            .icon {
-                width: 32px;
-                height: 32px;
-                min-width: 32px;
-                font-size: 14px;
-                margin-right: 10px;
-                border-radius: 8px;
-            }
-
-            .value {
-                font-size: 13px;
-            }
-
-            .save-contact {
-                padding: 12px 14px;
-                font-size: 14px;
-            }
-
-            .social-button {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
-            }
-        }
-
-        /* ----- scrollbar styling (optional tech touch) ----- */
-        ::-webkit-scrollbar {
-            width: 4px;
-            background: transparent;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 180, 255, 0.02);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(0, 180, 255, 0.12);
-            border-radius: 4px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lau Siew Seng | PKFZ</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 85% 10%,
+            #12447d 0%,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #010b1d,
+            #061b3c,
+            #020d20
+        );
+
+    color: white;
+}
+
+
+/* MAIN LANDSCAPE CARD */
+
+.card {
+
+    width: 100%;
+    max-width: 900px;
+
+    min-height: 480px;
+
+    position: relative;
+    overflow: hidden;
+
+    padding: 35px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(7, 38, 78, 0.98),
+            rgba(2, 15, 34, 0.98)
+        );
+
+    border: 1px solid rgba(30, 136, 255, 0.5);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.6);
+}
+
+
+/* DECORATIVE GLOW */
+
+.glow {
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    right: -150px;
+    top: -180px;
+
+    background: #0878ff;
+
+    opacity: 0.12;
+
+    filter: blur(80px);
+
+    border-radius: 50%;
+}
+
+
+/* HEADER */
+
+.header {
+
+    position: relative;
+    z-index: 2;
+
+    margin-bottom: 25px;
+}
+
+.logo {
+
+    width: 190px;
+
+    max-height: 80px;
+
+    object-fit: contain;
+}
+
+
+/* MAIN CONTENT */
+
+.content {
+
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 40px;
+}
+
+
+/* PHOTO */
+
+.photo-section {
+
+    width: 230px;
+
+    min-width: 230px;
+
+    text-align: center;
+}
+
+.profile {
+
+    width: 200px;
+    height: 200px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 5px solid #0878ff;
+
+    box-shadow:
+        0 0 0 6px rgba(255,255,255,0.06),
+        0 20px 40px rgba(0,0,0,0.5);
+}
+
+
+/* PERSONAL INFORMATION */
+
+.personal {
+
+    flex: 1;
+}
+
+h1 {
+
+    margin: 0 0 8px;
+
+    font-size: 40px;
+
+    line-height: 1.1;
+}
+
+.position {
+
+    font-size: 23px;
+
+    font-weight: bold;
+
+    color: #1688ff;
+
+    margin-bottom: 6px;
+}
+
+.company {
+
+    font-size: 18px;
+
+    color: #e1ebf8;
+
+    margin-bottom: 22px;
+}
+
+
+.divider {
+
+    width: 80px;
+
+    height: 3px;
+
+    background: #0878ff;
+
+    border-radius: 20px;
+
+    margin-bottom: 20px;
+}
+
+
+/* CONTACT GRID */
+
+.contact-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(220px, 1fr));
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+
+.contact-item {
+
+    display: flex;
+
+    align-items: center;
+
+    min-height: 62px;
+
+    padding: 9px 12px;
+
+    border-radius: 13px;
+
+    text-decoration: none;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(16, 64, 112, 0.75),
+            rgba(5, 29, 58, 0.75)
+        );
+
+    border: 1px solid rgba(90,160,230,0.2);
+
+    transition: 0.2s;
+}
+
+
+.contact-item:hover {
+
+    transform: translateY(-2px);
+
+    border-color: #1688ff;
+
+    background:
+        rgba(15,75,130,0.9);
+}
+
+
+.icon {
+
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-right: 11px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1688ff,
+            #0758cf
+        );
+
+    font-size: 19px;
+}
+
+
+.label {
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    color: #55a9ff;
+
+    margin-bottom: 3px;
+}
+
+
+.value {
+
+    font-size: 14px;
+
+    line-height: 1.35;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* SAVE CONTACT */
+
+.save-contact {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    padding: 15px;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0878ff,
+            #0757ce
+        );
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 10px 25px rgba(0,100,255,0.35);
+
+    transition: 0.2s;
+}
+
+
+.save-contact:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 30px rgba(0,100,255,0.5);
+}
+
+
+.save-icon {
+
+    font-size: 23px;
+
+    margin-right: 9px;
+}
+
+
+/* FOOTER */
+
+.footer {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 20px;
+
+    padding-top: 14px;
+
+    border-top:
+        1px solid rgba(255,255,255,0.12);
+
+    text-align: center;
+
+    color: #8da5c1;
+
+    font-size: 11px;
+}
+
+.footer strong {
+
+    color: #dceaff;
+}
+
+
+/* TABLET */
+
+@media (max-width: 750px) {
+
+    .card {
+
+        padding: 25px;
+
+    }
+
+    .content {
+
+        gap: 25px;
+
+    }
+
+    .photo-section {
+
+        width: 180px;
+
+        min-width: 180px;
+    }
+
+    .profile {
+
+        width: 160px;
+
+        height: 160px;
+    }
+
+    h1 {
+
+        font-size: 32px;
+    }
+
+    .position {
+
+        font-size: 20px;
+    }
+
+}
+
+
+/* PHONE */
+
+@media (max-width: 600px) {
+
+    body {
+
+        padding: 10px;
+
+        align-items: flex-start;
+    }
+
+    .card {
+
+        margin-top: 10px;
+
+        padding: 22px 15px;
+
+        border-radius: 22px;
+
+        min-height: auto;
+    }
+
+    .header {
+
+        text-align: center;
+    }
+
+    .logo {
+
+        width: 160px;
+    }
+
+    .content {
+
+        flex-direction: column;
+
+        gap: 18px;
+
+        text-align: center;
+    }
+
+    .photo-section {
+
+        width: 100%;
+
+        min-width: 0;
+    }
+
+    .profile {
+
+        width: 140px;
+
+        height: 140px;
+    }
+
+    .personal {
+
+        width: 100%;
+    }
+
+    h1 {
+
+        font-size: 29px;
+    }
+
+    .position {
+
+        font-size: 19px;
+    }
+
+    .company {
+
+        font-size: 15px;
+    }
+
+    .divider {
+
+        margin-left: auto;
+
+        margin-right: auto;
+    }
+
+    .contact-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
 <div class="card">
 
-    <!-- LEFT COLUMN: Logo + Profile -->
-    <div class="left-col">
+    <div class="glow"></div>
 
-        <!-- PKFZ LOGO -->
-        <div class="header">
-            <img
-                src="pkfz-logo.png"
-                alt="Port Klang Free Zone"
-                class="logo"
-            >
-        </div>
 
-        <!-- PROFILE -->
+    <!-- PKFZ LOGO -->
+
+    <div class="header">
+
         <img
-            src="profile.jpg"
-            alt="Lau Siew Seng"
-            class="profile"
+            src="pkfz-logo.png"
+            alt="Port Klang Free Zone"
+            class="logo"
         >
 
-        <h1>Lau Siew Seng</h1>
-
-        <div class="position">
-            Manager, IT
-        </div>
-
-        <div class="company">
-            Port Klang Free Zone Sdn Bhd
-        </div>
-
-        <div class="divider"></div>
-
     </div>
 
-    <!-- RIGHT COLUMN: Contacts + Save + Social + Footer -->
-    <div class="right-col">
 
-        <!-- CONTACT INFORMATION -->
-        <div class="contact-list">
+    <!-- MAIN LANDSCAPE CONTENT -->
 
-            <!-- Mobile -->
-            <a class="contact-item" href="tel:0125381068">
-                <div class="icon">📱</div>
-                <div class="contact-text">
-                    <div class="label">MOBILE</div>
-                    <div class="value">012-5381068</div>
-                </div>
-            </a>
+    <div class="content">
 
-            <!-- Office -->
-            <a class="contact-item" href="tel:0331015568">
-                <div class="icon">☎</div>
-                <div class="contact-text">
-                    <div class="label">OFFICE</div>
-                    <div class="value">03-3101 5568</div>
-                </div>
-            </a>
 
-            <!-- Email -->
-            <a class="contact-item" href="mailto:siewseng.lau@pkfz.com">
-                <div class="icon">✉</div>
-                <div class="contact-text">
-                    <div class="label">EMAIL</div>
-                    <div class="value">siewseng.lau@pkfz.com</div>
-                </div>
-            </a>
+        <!-- PHOTO -->
 
-            <!-- Website -->
-            <a class="contact-item" href="https://www.pkfz.com" target="_blank" rel="noopener">
-                <div class="icon">🌐</div>
-                <div class="contact-text">
-                    <div class="label">WEBSITE</div>
-                    <div class="value">www.pkfz.com</div>
-                </div>
-            </a>
+        <div class="photo-section">
 
-            <!-- Address -->
-            <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Port+Klang+Free+Zone+Pulau+Indah+Selangor" target="_blank" rel="noopener">
-                <div class="icon">📍</div>
-                <div class="contact-text">
-                    <div class="label">OFFICE ADDRESS</div>
-                    <div class="value">
-                        Jalan FZ 2-P5, Port Klang Free Zone/KS 12,<br>
-                        42920 Pulau Indah, Selangor Darul Ehsan, Malaysia
-                    </div>
-                </div>
-            </a>
+            <img
+                src="profile.jpg"
+                alt="Lau Siew Seng"
+                class="profile"
+            >
 
         </div>
 
-        <!-- SAVE CONTACT -->
-        <a class="save-contact" href="contact.vcf">
-            <span class="save-icon">👤+</span>
-            Save Contact
-        </a>
 
-        <!-- SOCIAL / CONTACT -->
-        <div class="social">
-            <div class="social-title">Connect with me</div>
-            <div class="social-links">
-                <a class="social-button" href="mailto:siewseng.lau@pkfz.com" aria-label="Email">✉</a>
-                <a class="social-button" href="tel:0125381068" aria-label="Call">📞</a>
-                <a class="social-button" href="https://www.pkfz.com" target="_blank" rel="noopener" aria-label="Website">🌐</a>
+        <!-- INFORMATION -->
+
+        <div class="personal">
+
+            <h1>
+                Lau Siew Seng
+            </h1>
+
+            <div class="position">
+                Manager, IT
             </div>
-        </div>
 
-        <!-- FOOTER -->
-        <div class="footer">
-            <strong>PORT KLANG FREE ZONE</strong><br>
-            <span>Your Trusted Logistics &amp; Industrial Hub</span>
-            <br><br>
-            Digital Business Card
+            <div class="company">
+                Port Klang Free Zone Sdn Bhd
+            </div>
+
+            <div class="divider"></div>
+
+
+            <!-- CONTACT -->
+
+            <div class="contact-grid">
+
+
+                <!-- MOBILE -->
+
+                <a
+                    class="contact-item"
+                    href="tel:0125381068"
+                >
+
+                    <div class="icon">
+                        📱
+                    </div>
+
+                    <div>
+
+                        <div class="label">
+                            MOBILE
+                        </div>
+
+                        <div class="value">
+                            012-5381068
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- OFFICE -->
+
+                <a
+                    class="contact-item"
+                    href="tel:0331015568"
+                >
+
+                    <div class="icon">
+                        ☎
+                    </div>
+
+                    <div>
+
+                        <div class="label">
+                            OFFICE
+                        </div>
+
+                        <div class="value">
+                            03-3101 5568
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- EMAIL -->
+
+                <a
+                    class="contact-item"
+                    href="mailto:siewseng.lau@pkfz.com"
+                >
+
+                    <div class="icon">
+                        ✉
+                    </div>
+
+                    <div>
+
+                        <div class="label">
+                            EMAIL
+                        </div>
+
+                        <div class="value">
+                            siewseng.lau@pkfz.com
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- WEBSITE -->
+
+                <a
+                    class="contact-item"
+                    href="https://www.pkfz.com"
+                    target="_blank"
+                    rel="noopener"
+                >
+
+                    <div class="icon">
+                        🌐
+                    </div>
+
+                    <div>
+
+                        <div class="label">
+                            WEBSITE
+                        </div>
+
+                        <div class="value">
+                            www.pkfz.com
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- ADDRESS -->
+
+                <a
+                    class="contact-item"
+                    href="https://www.google.com/maps/search/?api=1&query=Port+Klang+Free+Zone+Pulau+Indah+Selangor"
+                    target="_blank"
+                    rel="noopener"
+                >
+
+                    <div class="icon">
+                        📍
+                    </div>
+
+                    <div>
+
+                        <div class="label">
+                            OFFICE ADDRESS
+                        </div>
+
+                        <div class="value">
+                            Jalan FZ 2-P5, Port Klang Free Zone/KS 12,
+                            42920 Pulau Indah, Selangor Darul Ehsan,
+                            Malaysia
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <!-- SAVE CONTACT -->
+
+            <a
+                class="save-contact"
+                href="contact.vcf"
+            >
+
+                <span class="save-icon">
+                    👤+
+                </span>
+
+                Save Contact
+
+            </a>
+
         </div>
 
     </div>
-    <!-- end right-col -->
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        <strong>
+            PORT KLANG FREE ZONE
+        </strong>
+
+        &nbsp; | &nbsp;
+
+        Digital Business Card
+
+    </div>
 
 </div>
-<!-- end card -->
 
 </body>
 </html>
