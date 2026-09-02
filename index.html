@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lau Siew Seng - Digital Business Card</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            color: #1f2937;
+        }
+
+        .card {
+            max-width: 420px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .profile {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            margin: 18px 0 5px;
+            font-size: 28px;
+        }
+
+        .position {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .company {
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .info {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .info a,
+        .info div {
+            display: block;
+            padding: 12px 5px;
+            border-bottom: 1px solid #eee;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .save-button {
+            display: block;
+            margin-top: 25px;
+            padding: 15px;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .save-button:hover {
+            background: #374151;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <!-- Profile Photo -->
+    <img src="profile.jpg" alt="Lau Siew Seng" class="profile">
+
+    <!-- Name -->
+    <h1>Lau Siew Seng</h1>
+
+    <!-- Position -->
+    <div class="position">Manager, IT</div>
+
+    <!-- Company -->
+    <div class="company">
+        Port Klang Free Zone Sdn Bhd
+    </div>
+
+    <!-- Contact Information -->
+    <div class="info">
+
+        <a href="tel:0125381068">
+            📱 012-5381068
+        </a>
+
+        <a href="tel:0331015568">
+            ☎️ 03-3101 5568
+        </a>
+
+        <a href="mailto:siewseng.lau@pkfz.com">
+            ✉️ siewseng.lau@pkfz.com
+        </a>
+
+        <a href="https://www.pkfz.com" target="_blank">
+            🌐 www.pkfz.com
+        </a>
+
+        <div>
+            📍 Jalan FZ 2-P5, Port Klang Free Zone/KS 12,
+            42920 Pulau Indah, Selangor Darul Ehsan, Malaysia
+        </div>
+
+    </div>
+
+    <!-- Save Contact -->
+    <a class="save-button" href="contact.vcf">
+        + Save Contact
+    </a>
+
+    <div class="footer">
+        Digital Business Card
+    </div>
+
+</div>
+
+</body>
+</html>
